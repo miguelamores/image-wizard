@@ -100,7 +100,7 @@ const TransformationForm = ({
         title: values.title,
         publicId: image?.publicId,
         transformationType: type,
-        width: image?.image,
+        width: image?.width,
         height: image?.height,
         config: transformationConfig,
         secureURL: image?.secureURL,
