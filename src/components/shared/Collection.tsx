@@ -1,3 +1,5 @@
+"use client";
+
 import { IImage } from "@/lib/database/models/image.model";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CldImage } from "next-cloudinary";
@@ -90,13 +92,14 @@ export const Collection = ({
 };
 
 const Card = ({ image }: { image: IImage }) => {
+  console.log(image);
   return (
     <li>
       <Link href={`/transformations/${image._id}`} className="collection-card">
         <CldImage
           src={image.publicId}
           alt={image.title}
-          width={image.width}
+          width={image.width || 500}
           height={image.height}
           {...image.config}
           loading="lazy"
