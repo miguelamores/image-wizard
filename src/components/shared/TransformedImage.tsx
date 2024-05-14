@@ -65,10 +65,22 @@ const TransformedImage = ({
             onError={() => {
               debounce(() => {
                 setIsTransforming && setIsTransforming(false);
-              }, 8000);
+              }, 8000)();
             }}
             {...transformationConfig}
           />
+
+          {isTransforming && (
+            <div className="transforming-loader">
+              <Image
+                src="/assets/icons/spinner.svg"
+                width={50}
+                height={50}
+                alt="spinner"
+              />
+              <p className="text-white/80">Please wait...</p>
+            </div>
+          )}
         </div>
       ) : (
         <div className="transformed-placeholder">Transformed Image</div>
