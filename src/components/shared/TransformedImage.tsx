@@ -34,13 +34,13 @@ const TransformedImage = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex-between">
-        <h3 className="he-bold text-dark-600">Transformed</h3>
+        <h3 className="h3-bold text-dark-600">Transformed</h3>
 
         {hasDownload && (
           <button className="download-btn" onClick={downloadHandler}>
             <Image
               src="/assets/icons/download.svg"
-              alt="download"
+              alt="Download"
               width={24}
               height={24}
               className="pb-[6px]"
@@ -54,8 +54,8 @@ const TransformedImage = ({
           <CldImage
             width={getImageSize(type, image, "width")}
             height={getImageSize(type, image, "height")}
-            src={image.publicId}
-            alt={image.title}
+            src={image?.publicId}
+            alt={image.title || "transformed image"}
             sizes={"(max-width: 767px) 100vw, 50vw"}
             placeholder={dataUrl as PlaceholderValue}
             className="transformed-image"
