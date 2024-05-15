@@ -26,7 +26,7 @@ export const Collection = ({
   images: IImage[];
   totalPages?: number;
   page: number;
-  hasSearch: boolean;
+  hasSearch?: boolean;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
