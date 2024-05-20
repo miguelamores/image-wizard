@@ -36,7 +36,7 @@ export const Search = () => {
   }, [router, searchParams, query]);
 
   return (
-    <div className="search">
+    <div className="search" role="search">
       <Image
         src="/assets/icons/search.svg"
         alt="search"
