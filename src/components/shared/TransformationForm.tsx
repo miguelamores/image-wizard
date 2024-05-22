@@ -207,11 +207,16 @@ const TransformationForm = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        data-testid="transformation-form"
+        className="space-y-8"
+      >
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         <CustomField
           control={form.control}
           name="title"
+          aria-label="title"
           formLabel="Image Title"
           className="w-full"
           render={({ field }) => <Input {...field} className="input-field" />}
@@ -330,6 +335,7 @@ const TransformationForm = ({
           </Button>
 
           <Button
+            role="submit"
             type="submit"
             className="submit-button capitalize"
             disabled={isSubmitting}
