@@ -18,4 +18,36 @@ test.describe("Login page", () => {
     await input.fill("miguel");
     await expect(input).toHaveValue("miguel");
   });
+
+  test.skip("user should be able to sign-in with google", async ({ page }) => {
+    // await page.getByRole("textbox", { name: /username/ }).fill("miguelamores")
+    await page.getByRole("button", { name: "Google" }).click();
+    // await page.waitForURL(/^https:\/\/accounts\.google\.com\/v3$/);
+    await page
+      .getByRole("textbox", { name: /Email or phone/ })
+      .fill("migueamores@gmail.com");
+    await page.getByRole("button", { name: "Next" }).click();
+    // await page.waitForNavigation();
+    // await page.waitForSelector('input[type="password"]', { state: "visible" });
+    await page.getByLabel(/Enter your password/).fill("miguel1991.");
+    // await page
+    //   .getByRole("textbox", { name: /Enter your password/ })
+    //   .fill("miguel1991.");
+    // await page.fill('input[type="password"]', "miguel1991");
+    await page.getByRole("button", { name: "Next" }).click();
+  });
+
+  test("user should be able to sign-in with github", async ({ page }) => {
+    // await page.getByRole("textbox", { name: /username/ }).fill("miguelamores")
+    await page.getByLabel(/Email address or username/).fill("migueamores");
+    await page.getByRole("button", { name: "Continue" }).click();
+
+    await page.getByLabel(/Password/).fill("Uchiha29.");
+    await page.getByRole("button", { name: "Continue" }).click();
+
+    await page.waitForURL("http://localhost:3000/");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(
+      "Unleash Your Creative Vision with Image Wizard"
+    );
+  });
 });
