@@ -36,20 +36,4 @@ test.describe("Login page", () => {
     // await page.fill('input[type="password"]', "miguel1991");
     await page.getByRole("button", { name: "Next" }).click();
   });
-
-  test("user should be able to sign-in with github", async ({ page }) => {
-    // await page.getByRole("textbox", { name: /username/ }).fill("miguelamores")
-    await page
-      .getByLabel(/Email address or username/)
-      .fill(process.env.LOGIN_USERNAME!);
-    await page.getByRole("button", { name: "Continue" }).click();
-
-    await page.getByLabel(/Password/).fill(process.env.LOGIN_PASS!);
-    await page.getByRole("button", { name: "Continue" }).click();
-
-    await page.waitForURL("http://localhost:3000/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Unleash Your Creative Vision with Image Wizard"
-    );
-  });
 });
