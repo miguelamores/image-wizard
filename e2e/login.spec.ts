@@ -39,10 +39,12 @@ test.describe("Login page", () => {
 
   test("user should be able to sign-in with github", async ({ page }) => {
     // await page.getByRole("textbox", { name: /username/ }).fill("miguelamores")
-    await page.getByLabel(/Email address or username/).fill("migueamores");
+    await page
+      .getByLabel(/Email address or username/)
+      .fill(process.env.LOGIN_USERNAME!);
     await page.getByRole("button", { name: "Continue" }).click();
 
-    await page.getByLabel(/Password/).fill("Uchiha29.");
+    await page.getByLabel(/Password/).fill(process.env.LOGIN_PASS!);
     await page.getByRole("button", { name: "Continue" }).click();
 
     await page.waitForURL("http://localhost:3000/");
