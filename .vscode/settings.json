@@ -1,0 +1,30 @@
+{
+  "eslint.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.options": {
+    "overrideConfigFile": "./eslint.config.js"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.endOfLine": "lf",
+  "prettier.trailingComma": "es5",
+  "prettier.tabWidth": 2,
+  "prettier.jsxSingleQuote": false,
+  "prettier.singleQuote": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "terminal.integrated.env.osx": {},
+  "standard.autoFixOnSave": true,
+  "console-ninja.featureSet": "Community",
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "workbench.colorTheme": "Kimbie Dark",
+  "prisma.showPrismaDataPlatformNotification": false
+}
