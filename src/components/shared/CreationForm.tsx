@@ -39,6 +39,10 @@ interface Props {
   creditBalance: number;
 }
 
+type Result = {
+  images: Array<ImageObjType>;
+};
+
 const CreationForm = ({ userId, creditBalance }: Props) => {
   const [isSubmitting, setSubmit] = useState(false);
   const [image, setImage] = useState<ImageObjType>(null);
@@ -56,7 +60,7 @@ const CreationForm = ({ userId, creditBalance }: Props) => {
     setImage(null);
     setSubmit(true);
     try {
-      const result = await fal.subscribe("fal-ai/flux/dev", {
+      const result: Result = await fal.subscribe("fal-ai/flux/dev", {
         input: {
           prompt,
         },
@@ -68,16 +72,16 @@ const CreationForm = ({ userId, creditBalance }: Props) => {
         },
       });
       console.log(result);
-      const imageObj = result.images[0] ?? {};
-      const imageUrl = imageObj.url as string;
+      const imageObj = result.images[0];
+      const imageUrl = imageObj?.url as string;
       setImage(imageObj);
 
       const imageData = {
         title: prompt,
         publicId: imageUrl,
         transformationType: "generate",
-        width: imageObj.width,
-        height: imageObj.height,
+        width: imageObj?.width || 200,
+        height: imageObj?.height || 200,
         config: { generate: { prompt } } as Transformations,
         secureURL: imageUrl,
         transformationURL: imageUrl,
