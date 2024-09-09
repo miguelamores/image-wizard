@@ -34,7 +34,12 @@ type ImageObjType = {
   width: number;
 } | null;
 
-const CreationForm = ({ userId, creditBalance }) => {
+interface Props {
+  userId: string;
+  creditBalance: number;
+}
+
+const CreationForm = ({ userId, creditBalance }: Props) => {
   const [isSubmitting, setSubmit] = useState(false);
   const [image, setImage] = useState<ImageObjType>(null);
 
