@@ -1,60 +1,32 @@
-"use client";
+import CreationForm from "@/components/shared/CreationForm";
+import Header from "@/components/shared/Header";
+import TransformationForm from "@/components/shared/TransformationForm";
+import { transformationTypes } from "@/constants";
+import { getUserById } from "@/lib/actions/user.actions";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+const CreationPage = async ({ params: { type } }: SearchParamProps) => {
+  const transformation = transformationTypes[type];
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+  const { userId } = auth();
 
-export const schema = z.object({
-  prompt: z.string().min(1, "Prompt is required"),
-});
+  if (!userId) redirect("/sign-in");
 
-const Creation = () => {
-  const isSubmitting = false;
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      prompt: "",
-    },
-  });
+  const user = await getUserById(userId);
 
   return (
-    <Form {...form}>
-      <form action="" className="flex flex-col items-center gap-5">
-        <FormField
-          control={form.control}
-          name="prompt"
-          render={({ field }) => (
-            <FormItem className="w-full">
-              <FormLabel>Prompt</FormLabel>
-              <FormControl data-testid="prompt">
-                <Input {...field} className="input-field" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          role="submit"
-          type="submit"
-          className="submit-button capitalize"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Save Image"}
-        </Button>
-      </form>
-    </Form>
+    <>
+      <Header
+        title={"Image Creation"}
+        subtitle={"Create an image from a prompt"}
+      />
+
+      <section className="mt-10">
+        <CreationForm userId={user._id} creditBalance={user.creditBalance} />
+      </section>
+    </>
   );
 };
 
-export default Creation;
+export default CreationPage;

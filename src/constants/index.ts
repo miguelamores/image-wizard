@@ -32,7 +32,7 @@ export const navLinks = [
   {
     label: "Image Creation",
     route: "/creation",
-    icon: "/assets/icons/camera.svg",
+    icon: "/assets/icons/create.svg",
   },
   {
     label: "Profile",
@@ -163,6 +163,13 @@ export const transformationTypes = {
       recolor: { prompt: "", to: "", multiple: true },
     },
     icon: "filter.svg",
+  },
+  generate: {
+    type: "generate",
+    title: "Image Creation",
+    subTitle: "Create an image from a text prompt",
+    config: { generate: true },
+    icon: "camera.svg",
   },
 };
 

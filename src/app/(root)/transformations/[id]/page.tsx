@@ -57,11 +57,10 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
         )}
       </section>
 
-      <section className="mt-10 border-t border-dark-400/15">
-        <div className="transformation-grid">
-          {/* MEDIA UPLOADER */}
+      {image.transformationType === "generate" && (
+        <section className="mt-10 border-t border-dark-400/15 flex justify-start items-center">
           <div className="flex flex-col gap-4">
-            <h3 className="h3-bold text-dark-600">Original</h3>
+            <h3 className="h3-bold text-dark-600 mt-10">Result</h3>
 
             <Image
               width={getImageSize(image.transformationType, image, "width")}
@@ -71,30 +70,53 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
               className="transformation-original_image"
             />
           </div>
+        </section>
+      )}
 
-          {/* TRANSFORMED IMAGE */}
-          <TransformedImage
-            image={image}
-            type={image.transformationType}
-            title={image.title}
-            isTransforming={false}
-            transformationConfig={image.config}
-            hasDownload={true}
-          />
-        </div>
+      {image.transformationType !== "generate" && (
+        <section className="mt-10 border-t border-dark-400/15">
+          <div className="transformation-grid">
+            {/* MEDIA UPLOADER */}
+            <div className="flex flex-col gap-4">
+              <h3 className="h3-bold text-dark-600">Original</h3>
 
-        {userId === image.author.clerkId && (
-          <div className="mt-4 space-y-4">
-            <Button asChild type="button" className="submit-button capitalize">
-              <Link href={`/transformations/${image._id}/update`}>
-                Update Image
-              </Link>
-            </Button>
+              <Image
+                width={getImageSize(image.transformationType, image, "width")}
+                height={getImageSize(image.transformationType, image, "height")}
+                src={image.secureURL}
+                alt="image"
+                className="transformation-original_image"
+              />
+            </div>
 
-            <DeleteConfirmation imageId={image._id} />
+            {/* TRANSFORMED IMAGE */}
+            <TransformedImage
+              image={image}
+              type={image.transformationType}
+              title={image.title}
+              isTransforming={false}
+              transformationConfig={image.config}
+              hasDownload={true}
+            />
           </div>
-        )}
-      </section>
+
+          {userId === image.author.clerkId && (
+            <div className="mt-4 space-y-4">
+              <Button
+                asChild
+                type="button"
+                className="submit-button capitalize"
+              >
+                <Link href={`/transformations/${image._id}/update`}>
+                  Update Image
+                </Link>
+              </Button>
+
+              <DeleteConfirmation imageId={image._id} />
+            </div>
+          )}
+        </section>
+      )}
     </>
   );
 };
