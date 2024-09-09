@@ -168,7 +168,7 @@ export const transformationTypes = {
     type: "generate",
     title: "Image Creation",
     subTitle: "Create an image from a text prompt",
-    config: { generate: true },
+    config: { generate: { prompt: "" } },
     icon: "camera.svg",
   },
 };
