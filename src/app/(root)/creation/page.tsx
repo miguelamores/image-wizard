@@ -6,7 +6,13 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-const CreationPage = async ({ params: { type } }: SearchParamProps) => {
+const CreationPage = async (props: SearchParamProps) => {
+  const params = await props.params;
+
+  const {
+    type
+  } = params;
+
   const transformation = transformationTypes[type];
 
   const { userId } = auth();
@@ -23,7 +29,8 @@ const CreationPage = async ({ params: { type } }: SearchParamProps) => {
       />
 
       <section className="mt-10">
-        <CreationForm userId={user._id} creditBalance={user.creditBalance} />
+        <h2>Not available</h2>
+        {/* <CreationForm userId={user._id} creditBalance={user.creditBalance} /> */}
       </section>
     </>
   );
