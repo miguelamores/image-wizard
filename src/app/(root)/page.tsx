@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Home = async (props: SearchParamProps) => {
+const Home = async (props: { searchParams: SearchParams }) => {
   const searchParams = await props.searchParams;
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
@@ -19,7 +19,7 @@ const Home = async (props: SearchParamProps) => {
           Unleash Your Creative Vision with Image Wizard
         </h1>
         <ul className="flex-center w-full gap-20">
-          {navLinks.slice(1, 5).map((link) => (
+          {navLinks.slice(1, 5).map(link => (
             <Link
               key={link.route}
               href={link.route}

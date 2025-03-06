@@ -4,7 +4,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-const CreationPage = async (props: SearchParamProps) => {
+const CreationPage = async () => {
   const { userId } = auth();
 
   if (!userId) redirect("/sign-in");

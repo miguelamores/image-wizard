@@ -9,12 +9,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ImageDetails = async (props: SearchParamProps) => {
+const ImageDetails = async (props: { params: Params }) => {
   const params = await props.params;
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const { userId } = auth();
 

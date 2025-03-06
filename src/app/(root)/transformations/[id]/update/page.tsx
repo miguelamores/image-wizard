@@ -6,12 +6,10 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-const UpdateTransformationPage = async (props: SearchParamProps) => {
+const UpdateTransformationPage = async (props: { params: Params }) => {
   const params = await props.params;
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const { userId } = auth();
 
