@@ -9,9 +9,7 @@ import { redirect } from "next/navigation";
 const CreationPage = async (props: SearchParamProps) => {
   const params = await props.params;
 
-  const {
-    type
-  } = params;
+  const { type } = params;
 
   const transformation = transformationTypes[type];
 
@@ -30,7 +28,7 @@ const CreationPage = async (props: SearchParamProps) => {
 
       <section className="mt-10">
         <h2>Not available</h2>
-        {/* <CreationForm userId={user._id} creditBalance={user.creditBalance} /> */}
+        <CreationForm userId={user._id} creditBalance={user.creditBalance} />
       </section>
     </>
   );
