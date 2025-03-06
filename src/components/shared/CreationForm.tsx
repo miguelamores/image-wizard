@@ -40,7 +40,10 @@ interface Props {
 }
 
 type Result = {
-  images: Array<ImageObjType>;
+  data: {
+    prompt: string;
+    images: Array<ImageObjType>;
+  };
 };
 
 const CreationForm = ({ userId, creditBalance }: Props) => {
@@ -72,7 +75,7 @@ const CreationForm = ({ userId, creditBalance }: Props) => {
         },
       });
       console.log(result);
-      const imageObj = result.images[0];
+      const imageObj = result.data.images[0];
       const imageUrl = imageObj?.url as string;
       setImage(imageObj);
 
