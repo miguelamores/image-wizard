@@ -1,6 +1,6 @@
-// import { route } from "@fal-ai/serverless-proxy/nextjs";
+import { route } from "@fal-ai/server-proxy/nextjs";
 
-// export const { GET, POST } = route;
+export const { GET, POST } = route;
 
 // import OpenAI from "openai";
 // const openai = new OpenAI();
