@@ -30,8 +30,8 @@ export const schema = z.object({
 
 type ImageObjType = {
   url: string;
-  height: number;
-  width: number;
+  height?: number | undefined;
+  width?: number | undefined;
 } | null;
 
 interface Props {
