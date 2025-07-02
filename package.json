@@ -11,7 +11,7 @@
     "test:ui": "npx playwright test --ui"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.0.3",
+    "@clerk/nextjs": "^6.23.2",
     "@fal-ai/client": "^1.2.3",
     "@fal-ai/server-proxy": "^1.1.1",
     "@hookform/resolvers": "^3.3.4",
