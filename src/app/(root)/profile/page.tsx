@@ -10,7 +10,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 const Profile = async (props: { searchParams: SearchParams }) => {
   const searchParams = await props.searchParams;
   const page = Number(searchParams?.page) || 1;
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) redirect("/sign-in");
 

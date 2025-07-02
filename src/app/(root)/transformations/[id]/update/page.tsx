@@ -11,7 +11,7 @@ const UpdateTransformationPage = async (props: { params: Params }) => {
 
   const { id } = params;
 
-  const { userId } = auth();
+  const { userId } = await auth();
 
   if (!userId) redirect("/sign-in");
 

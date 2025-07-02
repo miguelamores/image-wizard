@@ -14,7 +14,7 @@ const ImageDetails = async (props: { params: Params }) => {
 
   const { id } = params;
 
-  const { userId } = auth();
+  const { userId } = await auth();
 
   const image = await getImageById(id);
 
