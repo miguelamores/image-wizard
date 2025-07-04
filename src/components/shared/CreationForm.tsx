@@ -15,13 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 
-import { fal } from "@fal-ai/client";
+import { fal, createFalClient } from "@fal-ai/client";
 import { useState } from "react";
 import Image from "next/image";
 import { addImage } from "@/lib/actions/image.actions";
 
 fal.config({
   proxyUrl: "/api/generation",
+  credentials: process.env.FAL_KEY,
 });
 
 export const schema = z.object({
@@ -58,10 +59,10 @@ const CreationForm = ({ userId, creditBalance }: Props) => {
   });
 
   const onSubmit = async (value: z.infer<typeof schema>) => {
-    console.log({ value });
     const { prompt } = value;
     setImage(null);
     setSubmit(true);
+
     try {
       const result: Result = await fal.subscribe("fal-ai/flux/dev", {
         input: {
@@ -74,7 +75,7 @@ const CreationForm = ({ userId, creditBalance }: Props) => {
           }
         },
       });
-      console.log(result);
+
       const imageObj = result.data.images[0];
       const imageUrl = imageObj?.url as string;
       setImage(imageObj);
