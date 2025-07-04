@@ -26,11 +26,11 @@ const Home = async (props: PageProps) => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto flex flex-col items-center gap-4">
             <h1 className="text-4xl font-bold leading-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 lg:text-6xl">
               Unleash Your Creative Vision with Image Wizard
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-2xl">
               Transform, enhance, and create stunning images with the power of
               AI. From restoration to generative fills, bring your visual ideas
               to life.
@@ -42,10 +42,10 @@ const Home = async (props: PageProps) => {
                 <Link
                   key={link.route}
                   href={link.route}
-                  className="group relative overflow-hidden bg-white rounded-2xl border border-gray-200 p-8 transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md hover:shadow-xl"
+                  className="group p-3! relative overflow-hidden bg-white rounded-2xl border border-gray-200 transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md hover:shadow-xl"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative">
+                  <div className="flex flex-col items-center justify-center">
                     <div className="w-16 h-16 mx-auto mb-4 p-4 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                       <Image
                         src={link.icon}
@@ -62,9 +62,6 @@ const Home = async (props: PageProps) => {
                       {getFeatureDescription(link.label)}
                     </p>
                   </div>
-
-                  {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                 </Link>
               ))}
             </div>
