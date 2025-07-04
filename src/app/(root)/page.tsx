@@ -24,13 +24,13 @@ const Home = async (props: PageProps) => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center gap-4">
             <h1 className="text-4xl font-bold leading-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 lg:text-6xl">
               Unleash Your Creative Vision with Image Wizard
             </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-2xl">
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-12 max-w-2xl">
               Transform, enhance, and create stunning images with the power of
               AI. From restoration to generative fills, bring your visual ideas
               to life.
@@ -38,11 +38,11 @@ const Home = async (props: PageProps) => {
 
             {/* Feature Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {navLinks.slice(1, 5).map((link, index) => (
+              {navLinks.slice(1, 7).map((link, index) => (
                 <Link
                   key={link.route}
                   href={link.route}
-                  className="group p-3! relative overflow-hidden bg-white rounded-2xl border border-gray-200 transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md hover:shadow-xl"
+                  className="group p-3! relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md hover:shadow-xl"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex flex-col items-center justify-center">
@@ -55,10 +55,10 @@ const Home = async (props: PageProps) => {
                         className="w-full h-full object-contain filter brightness-0 invert"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-gray-800 group-hover:text-indigo-600 transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                       {link.label}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
                       {getFeatureDescription(link.label)}
                     </p>
                   </div>
@@ -84,12 +84,12 @@ const Home = async (props: PageProps) => {
       </section>
 
       {/* Collection Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16! md:py-24 w-full flex flex-col items-center">
-        <div className="mb-12 text-center max-w-7xl">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 lg:text-4xl">
+      <section className="px-4 sm:px-6 lg:px-8 py-16! md:py-24 w-full flex flex-col items-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
+        <div className="mb-12! text-center max-w-7xl">
+          <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4 lg:text-4xl">
             Discover Amazing Creations
           </h2>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
             Explore the latest transformations and get inspired by what&apos;s
             possible with AI-powered image editing.
           </p>

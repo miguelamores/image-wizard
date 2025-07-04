@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   /* Brand Colors */
@@ -54,6 +55,59 @@
     0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-extra-large: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Theme Colors - Light Mode */
+  --background: #ffffff;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --primary: #059669;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #1f2937;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #1f2937;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: #059669;
+}
+
+/* Dark Mode Variables */
+:root.dark,
+[data-theme="dark"] {
+  --shadow-light: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.3),
+    0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.4),
+    0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-extra-large: 0 20px 25px -5px rgb(0 0 0 / 0.5),
+    0 8px 10px -6px rgb(0 0 0 / 0.5);
+
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --popover: #1e293b;
+  --popover-foreground: #f1f5f9;
+  --primary: #10b981;
+  --primary-foreground: #064e3b;
+  --secondary: #334155;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #334155;
+  --accent-foreground: #f1f5f9;
+  --destructive: #ef4444;
+  --destructive-foreground: #f1f5f9;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #10b981;
 }
 
 /* Base Styles */
@@ -71,11 +125,38 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   font-weight: 400;
   line-height: 1.6;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  color: var(--gray-800);
+  background: var(--background);
+  color: var(--foreground);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Apply dark mode variables */
+    /* --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --card-foreground: #f1f5f9;
+    --popover: #1e293b;
+    --popover-foreground: #f1f5f9;
+    --primary: #10b981;
+    --primary-foreground: #064e3b;
+    --secondary: #334155;
+    --secondary-foreground: #f1f5f9;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #334155;
+    --accent-foreground: #f1f5f9;
+    --destructive: #ef4444;
+    --destructive-foreground: #f1f5f9;
+    --border: #334155;
+    --input: #1e293b;
+    --ring: #10b981; */
+  }
 }
 
 /* Custom Utility Classes */
@@ -100,15 +181,23 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Card Effects */
+/* Dark mode glass effects */
+:root.dark .glass,
+[data-theme="dark"] .glass {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Card Effects with Dark Mode */
 .card-elegant {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--card);
   backdrop-filter: blur(16px);
   border-radius: 1rem;
-  border: 1px solid rgb(229, 231, 235);
+  border: 1px solid var(--border);
   padding: 2rem;
   transition: all 0.3s ease-in-out;
   box-shadow: var(--shadow-medium);
+  color: var(--card-foreground);
 }
 
 .card-elegant:hover {
@@ -116,16 +205,16 @@ body {
   box-shadow: var(--shadow-extra-large);
 }
 
-/* Navigation Effects */
+/* Navigation Effects with Dark Mode */
 .nav-link {
   position: relative;
   padding: 0.5rem 1rem;
-  color: var(--gray-600);
+  color: var(--muted-foreground);
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: var(--primary-600);
+  color: var(--primary);
 }
 
 .nav-link::after {
@@ -146,28 +235,29 @@ body {
 }
 
 .nav-link.active {
-  color: var(--primary-600);
+  color: var(--primary);
 }
 
-/* Form Elements */
+/* Form Elements with Dark Mode */
 .input-field {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 2px solid rgb(229, 231, 235);
-  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--border);
+  background: var(--input);
+  color: var(--foreground);
   backdrop-filter: blur(16px);
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .input-field:hover {
-  border-color: var(--primary-300);
+  border-color: var(--primary);
 }
 
 .input-field:focus {
   outline: none;
-  border-color: var(--primary-500);
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
@@ -175,20 +265,21 @@ body {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 3rem;
   border-radius: 0.75rem;
-  border: 2px solid rgb(229, 231, 235);
-  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--border);
+  background: var(--input);
+  color: var(--foreground);
   backdrop-filter: blur(16px);
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .search-field:hover {
-  border-color: var(--primary-300);
+  border-color: var(--primary);
 }
 
 .search-field:focus {
   outline: none;
-  border-color: var(--primary-500);
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
@@ -222,42 +313,52 @@ body {
   animation: gradient 3s ease infinite;
 }
 
-/* Legacy Classes for Backward Compatibility */
+/* Legacy Classes for Backward Compatibility with Dark Mode */
 .p-14-medium {
   font-size: 0.875rem;
   font-weight: 500;
+  color: var(--foreground);
 }
 
 .p-16-regular {
   font-size: 1rem;
   font-weight: 400;
+  color: var(--foreground);
 }
 
 .p-16-semibold {
   font-size: 1rem;
   font-weight: 600;
+  color: var(--foreground);
 }
 
 .p-24-bold {
   font-size: 1.5rem;
   font-weight: 700;
+  color: var(--foreground);
 }
 
 .h3-bold {
   font-size: 1.25rem;
   font-weight: 700;
+  color: var(--foreground);
 }
 
 .text-dark-400 {
-  color: var(--gray-600);
+  color: var(--muted-foreground);
 }
 
 .text-dark-600 {
-  color: var(--gray-800);
+  color: var(--foreground);
 }
 
 .bg-purple-100 {
   background-color: rgb(243, 232, 255);
+}
+
+:root.dark .bg-purple-100,
+[data-theme="dark"] .bg-purple-100 {
+  background-color: rgb(88, 28, 135);
 }
 
 .bg-purple-gradient {
@@ -272,6 +373,13 @@ body {
   border-radius: 0.5rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: 1px solid var(--border);
+}
+
+.button:hover {
+  opacity: 0.9;
 }
 
 .submit-button {
@@ -279,13 +387,15 @@ body {
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  color: white;
+  color: var(--primary-foreground);
+  background: var(--primary);
   transition: all 0.3s ease;
   transform: scale(1);
 }
 
 .submit-button:hover {
   transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .download-btn {
@@ -318,16 +428,17 @@ body {
   justify-content: center;
   padding: 2rem;
   border-radius: 1rem;
-  border: 2px dashed rgb(209, 213, 219);
-  background: linear-gradient(to bottom right, rgb(249, 250, 251), white);
+  border: 2px dashed var(--border);
+  background: var(--card);
+  color: var(--card-foreground);
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 300px;
 }
 
 .media-uploader_cta:hover {
-  border-color: var(--primary-400);
-  background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.05), white);
+  border-color: var(--primary);
+  background: var(--accent);
 }
 
 .media-uploader_cta-image {
@@ -379,23 +490,21 @@ body {
   justify-content: center;
   min-height: 300px;
   border-radius: 1rem;
-  border: 2px dashed rgb(209, 213, 219);
-  background: linear-gradient(to bottom right, rgb(249, 250, 251), white);
-  color: var(--gray-500);
+  border: 2px dashed var(--border);
+  background: var(--card);
+  color: var(--muted-foreground);
   font-size: 1.125rem;
   font-weight: 500;
 }
 
 .success-toast {
-  background-color: rgb(240, 253, 244);
-  border-color: rgb(187, 247, 208);
-  color: rgb(22, 101, 52);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 .error-toast {
-  background-color: rgb(254, 242, 242);
-  border-color: rgb(254, 202, 202);
-  color: rgb(153, 27, 27);
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
 }
 
 .prompt-field {

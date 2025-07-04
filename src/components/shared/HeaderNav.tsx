@@ -7,13 +7,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Header = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 flex justify-center z-50 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 flex justify-center z-50 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-slate-700 shadow-sm">
       <div className="max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex items-center justify-between h-16 w-full">
           {/* Logo Section */}
@@ -37,7 +38,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             <SignedIn>
-              <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-200">
+              <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-200 dark:border-slate-700">
                 {headerNavLinks.map(link => {
                   const isActive = link.route === pathname;
                   return (
@@ -47,7 +48,7 @@ const Header = () => {
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
                         isActive
                           ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                          : "text-gray-700 hover:bg-gray-100 hover:text-indigo-600"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400"
                       }`}
                     >
                       <Image
@@ -66,6 +67,9 @@ const Header = () => {
                   );
                 })}
 
+                {/* Dark Mode Toggle */}
+                <DarkModeToggle />
+
                 <div className="ml-2">
                   <UserButton
                     afterSignOutUrl="/"
@@ -80,34 +84,39 @@ const Header = () => {
             </SignedIn>
 
             <SignedOut>
-              <Button
-                asChild
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <Link href="/sign-in" className="flex items-center gap-2">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3v1"
-                    />
-                  </svg>
-                  Get Started
-                </Link>
-              </Button>
+              <div className="flex items-center gap-2">
+                {/* Dark Mode Toggle */}
+                <DarkModeToggle />
+
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href="/sign-in" className="flex items-center gap-2">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3v1"
+                      />
+                    </svg>
+                    Get Started
+                  </Link>
+                </Button>
+              </div>
             </SignedOut>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+            className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-200"
           >
             <svg
               className="w-6 h-6"
@@ -136,12 +145,12 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-xl">
+          <div className="md:hidden border-t border-gray-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <SignedIn>
                 {/* Main Navigation */}
                 <div className="mb-4">
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
+                  <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-3">
                     Transform
                   </h3>
                   {navLinks.slice(0, 7).map(link => {
@@ -153,7 +162,7 @@ const Header = () => {
                         className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                           isActive
                             ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-gray-100"
+                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -174,7 +183,7 @@ const Header = () => {
 
                 {/* User Section */}
                 <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-3">
+                  <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 px-3">
                     Account
                   </h3>
                   {navLinks.slice(7).map(link => {
@@ -186,7 +195,7 @@ const Header = () => {
                         className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${
                           isActive
                             ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                            : "text-gray-700 hover:bg-gray-100"
+                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -205,7 +214,7 @@ const Header = () => {
                   })}
 
                   {/* User Button */}
-                  <div className="mt-4 p-3 border-t border-gray-200">
+                  <div className="mt-4 p-3 border-t border-gray-200 dark:border-slate-700">
                     <UserButton
                       afterSignOutUrl="/"
                       showName

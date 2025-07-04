@@ -51,7 +51,7 @@ export const Collection = ({
           <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 lg:text-4xl">
             Recent Creations
           </h2>
-          <p className="text-base text-gray-600 leading-relaxed mt-2">
+          <p className="text-base text-gray-600 leading-relaxed mt-2 dark:text-gray-400">
             Explore the latest transformations and edits
           </p>
         </div>
@@ -142,7 +142,7 @@ const Card = ({ image, index }: { image: IImage; index: number }) => {
     >
       <div className="card-elegant overflow-hidden group-hover:scale-105 transition-all duration-300">
         {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+        <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 ">
           {image.transformationType === "generate" ? (
             <Image
               src={image.publicId}
