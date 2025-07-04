@@ -63,10 +63,10 @@ const Checkout = ({
       <section>
         <Button
           type="submit"
-          // role="link"
-          className="w-full rounded-full bg-purple-gradient bg-cover"
+          variant="gradient"
+          className="w-full rounded-xl text-base font-semibold py-4 shadow-xl hover:shadow-2xl"
         >
-          Buy Credit
+          Buy Credits
         </Button>
       </section>
     </form>

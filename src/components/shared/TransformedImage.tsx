@@ -32,25 +32,28 @@ const TransformedImage = ({
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex-between">
-        <h3 className="h3-bold text-dark-600">Transformed</h3>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-bold text-gray-800">Transformed</h3>
 
         {hasDownload && (
-          <button className="download-btn" onClick={downloadHandler}>
+          <button
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 p-3 shadow-lg hover:shadow-xl"
+            onClick={downloadHandler}
+          >
             <Image
               src="/assets/icons/download.svg"
               alt="Download"
-              width={24}
-              height={24}
-              className="pb-[6px]"
+              width={20}
+              height={20}
+              className="filter brightness-0 invert"
             />
           </button>
         )}
       </div>
 
       {image?.publicId && transformationConfig ? (
-        <div className="relative">
+        <div className="relative overflow-hidden rounded-2xl shadow-xl border-2 border-white/50">
           <CldImage
             width={getImageSize(type, image, "width")}
             height={getImageSize(type, image, "height")}
@@ -58,7 +61,7 @@ const TransformedImage = ({
             alt={image.title || "transformed image"}
             sizes={"(max-width: 767px) 100vw, 50vw"}
             placeholder={dataUrl as PlaceholderValue}
-            className="transformed-image"
+            className="w-full h-auto object-cover"
             onLoad={() => {
               setIsTransforming && setIsTransforming(false);
             }}
@@ -71,19 +74,22 @@ const TransformedImage = ({
           />
 
           {isTransforming && (
-            <div className="transforming-loader">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-emerald-500/80 to-teal-600/80 backdrop-blur-sm">
               <Image
                 src="/assets/icons/spinner.svg"
                 width={50}
                 height={50}
                 alt="spinner"
+                className="animate-spin"
               />
-              <p className="text-white/80">Please wait...</p>
+              <p className="text-white font-medium mt-4">Please wait...</p>
             </div>
           )}
         </div>
       ) : (
-        <div className="transformed-placeholder">Transformed Image</div>
+        <div className="flex items-center justify-center min-h-[300px] rounded-2xl border-2 border-dashed border-gray-300 bg-gradient-to-br from-gray-50 to-white text-gray-500 text-lg font-medium">
+          Transformed Image
+        </div>
       )}
     </div>
   );

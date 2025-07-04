@@ -1,18 +1,18 @@
-import MobileNav from "@/components/shared/MobileNav";
-import Sidebar from "@/components/shared/Sidebar";
+import HeaderNav from "@/components/shared/HeaderNav";
 import { Toaster } from "@/components/ui/toaster";
 import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="root">
-      <Sidebar />
-      <MobileNav />
-      <div className="root-container">
-        <div className="wrapper">{children}</div>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header Navigation */}
+      <HeaderNav />
+
+      {/* Main content */}
+      <main className="min-h-screen pt-4">{children}</main>
+
       <Toaster />
-    </main>
+    </div>
   );
 };
 

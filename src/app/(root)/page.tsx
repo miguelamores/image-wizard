@@ -5,7 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Home = async (props: { searchParams: SearchParams }) => {
+interface SearchParams {
+  page?: string;
+  query?: string;
+}
+
+interface PageProps {
+  searchParams: Promise<SearchParams>;
+}
+
+const Home = async (props: PageProps) => {
   const searchParams = await props.searchParams;
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
@@ -14,41 +23,108 @@ const Home = async (props: { searchParams: SearchParams }) => {
 
   return (
     <>
-      <section className="home">
-        <h1 className="home-heading">
-          Unleash Your Creative Vision with Image Wizard
-        </h1>
-        <ul className="flex-center w-full gap-20">
-          {navLinks.slice(1, 5).map(link => (
-            <Link
-              key={link.route}
-              href={link.route}
-              className="flex-center flex-col gap-2"
-            >
-              <li className="flex-center w-fit rounded-full bg-white p-4">
-                <Image
-                  src={link.icon}
-                  alt="image route"
-                  width={24}
-                  height={24}
-                />
-              </li>
-              <p className="p-14-medium text-center text-white">{link.label}</p>
-            </Link>
-          ))}
-        </ul>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-4xl font-bold leading-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 lg:text-6xl">
+              Unleash Your Creative Vision with Image Wizard
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">
+              Transform, enhance, and create stunning images with the power of
+              AI. From restoration to generative fills, bring your visual ideas
+              to life.
+            </p>
+
+            {/* Feature Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {navLinks.slice(1, 5).map((link, index) => (
+                <Link
+                  key={link.route}
+                  href={link.route}
+                  className="group relative overflow-hidden bg-white rounded-2xl border border-gray-200 p-8 transition-all duration-300 ease-in-out hover:-translate-y-2 shadow-md hover:shadow-xl"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative">
+                    <div className="w-16 h-16 mx-auto mb-4 p-4 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                      <Image
+                        src={link.icon}
+                        alt={link.label}
+                        width={32}
+                        height={32}
+                        className="w-full h-full object-contain filter brightness-0 invert"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 text-gray-800 group-hover:text-indigo-600 transition-colors">
+                      {link.label}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {getFeatureDescription(link.label)}
+                    </p>
+                  </div>
+
+                  {/* Hover effect overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div
+          className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full opacity-20 animate-float"
+          style={{ animationDelay: "0s" }}
+        />
+        <div
+          className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-20 animate-float"
+          style={{ animationDelay: "2s" }}
+        />
+        <div
+          className="absolute bottom-40 left-20 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-full opacity-20 animate-float"
+          style={{ animationDelay: "4s" }}
+        />
       </section>
 
-      <section className="sm:mt-12">
-        <Collection
-          hasSearch
-          images={images?.data}
-          totalPages={images?.totalPage}
-          page={page}
-        />
+      {/* Collection Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 lg:text-4xl">
+            Discover Amazing Creations
+          </h2>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
+            Explore the latest transformations and get inspired by what&apos;s
+            possible with AI-powered image editing.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+          <Collection
+            hasSearch
+            images={images?.data}
+            totalPages={images?.totalPage}
+            page={page}
+          />
+        </div>
       </section>
     </>
   );
 };
+
+// Helper function to get feature descriptions
+function getFeatureDescription(label: string): string {
+  const descriptions = {
+    "Image Restore":
+      "Bring old photos back to life with AI-powered restoration",
+    "Generative Fill": "Complete missing parts of images intelligently",
+    "Object Remove": "Seamlessly remove unwanted objects from photos",
+    "Object Recolor": "Change colors while maintaining natural appearance",
+    "Background Remove": "Extract subjects with precision and clarity",
+  };
+  return (
+    descriptions[label as keyof typeof descriptions] ||
+    "Transform your images with AI"
+  );
+}
 
 export default Home;
