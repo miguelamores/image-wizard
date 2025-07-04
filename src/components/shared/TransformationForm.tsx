@@ -229,7 +229,7 @@ const TransformationForm = ({
             className="w-full"
             render={({ field }) => (
               <Select
-                onValueChange={(value) =>
+                onValueChange={value =>
                   onSelectFieldHandler(value, field.onChange)
                 }
                 value={field.value}
@@ -238,7 +238,7 @@ const TransformationForm = ({
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
                 <SelectContent>
-                  {Object.keys(aspectRatioOptions).map((key) => (
+                  {Object.keys(aspectRatioOptions).map(key => (
                     <SelectItem key={key} value={key} className="select-item">
                       {aspectRatioOptions[key as AspectRatioKey].label}
                     </SelectItem>
@@ -261,7 +261,7 @@ const TransformationForm = ({
                 <Input
                   value={field.value}
                   className="input-field"
-                  onChange={(e) =>
+                  onChange={e =>
                     onInputChangeHandler(
                       "prompt",
                       e.target.value,
@@ -283,7 +283,7 @@ const TransformationForm = ({
                   <Input
                     value={field.value}
                     className="input-field"
-                    onChange={(e) =>
+                    onChange={e =>
                       onInputChangeHandler(
                         "color",
                         e.target.value,
