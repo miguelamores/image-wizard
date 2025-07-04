@@ -13,9 +13,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 flex justify-center z-50 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between h-16 w-full">
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
