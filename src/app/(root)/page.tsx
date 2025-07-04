@@ -84,8 +84,8 @@ const Home = async (props: PageProps) => {
       </section>
 
       {/* Collection Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="mb-12 text-center">
+      <section className="px-4 sm:px-6 lg:px-8 py-16! md:py-24 w-full flex flex-col items-center">
+        <div className="mb-12 text-center max-w-7xl">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 lg:text-4xl">
             Discover Amazing Creations
           </h2>
@@ -95,7 +95,7 @@ const Home = async (props: PageProps) => {
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+        <div className="max-w-7xl p-8 w-full">
           <Collection
             hasSearch
             images={images?.data}
