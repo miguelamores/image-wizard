@@ -1,6 +1,6 @@
 "use client";
 
-import { navLinks } from "@/constants";
+import { headerNavLinks, navLinks } from "@/constants";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,39 +37,8 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             <SignedIn>
-              {/* Main Navigation Links */}
-              {navLinks.slice(0, 7).map((link, index) => {
-                const isActive = link.route === pathname;
-                return (
-                  <Link
-                    key={link.route}
-                    href={link.route}
-                    className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
-                      isActive
-                        ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-md"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-indigo-600"
-                    }`}
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    <Image
-                      src={link.icon}
-                      alt={link.label}
-                      width={16}
-                      height={16}
-                      className={`transition-all duration-200 ${
-                        isActive ? "brightness-0 invert" : ""
-                      }`}
-                    />
-                    <span className="text-sm font-medium hidden lg:block">
-                      {link.label}
-                    </span>
-                  </Link>
-                );
-              })}
-
-              {/* User Section */}
               <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-200">
-                {navLinks.slice(7).map(link => {
+                {headerNavLinks.map(link => {
                   const isActive = link.route === pathname;
                   return (
                     <Link
@@ -97,7 +66,6 @@ const Header = () => {
                   );
                 })}
 
-                {/* User Button */}
                 <div className="ml-2">
                   <UserButton
                     afterSignOutUrl="/"
