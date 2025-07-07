@@ -95,7 +95,7 @@ const Home = async (props: PageProps) => {
           </p>
         </div>
 
-        <div className="max-w-7xl p-8 w-full">
+        <div className="max-w-7xl w-full">
           <Collection
             hasSearch
             images={images?.data}

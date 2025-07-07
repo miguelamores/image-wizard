@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <HeaderNav />
 
       {/* Main content */}
-      <main className="min-h-screen pt-4">{children}</main>
+      <main className="min-h-screen">{children}</main>
 
       <Toaster />
     </div>

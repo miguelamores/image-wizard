@@ -36,7 +36,7 @@ export const Search = () => {
 
   return (
     <div className="relative max-w-md" role="search">
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
         <svg
           className="w-5 h-5 text-gray-400"
           fill="none"
@@ -53,7 +53,7 @@ export const Search = () => {
       </div>
 
       <Input
-        className="input-field-modern pl-10 pr-4 py-3 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+        className="input-field-modern pl-10 pr-5 py-3 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
         placeholder="Search transformations..."
         value={query}
         onChange={e => setQuery(e.target.value)}

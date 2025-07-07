@@ -19,8 +19,8 @@ const AddTransformationTypePage = async (props: { params: Params }) => {
   const user = await getUserById(userId);
 
   return (
-    <div className="w-full h-dvh flex justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
-      <div className="max-w-7xl w-full flex flex-col items-center">
+    <div className="w-full h-full md:h-dvh flex justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
+      <div className="max-w-7xl w-full flex flex-col items-center h-full">
         <Header
           title={transformation.title}
           subtitle={transformation.subTitle}
