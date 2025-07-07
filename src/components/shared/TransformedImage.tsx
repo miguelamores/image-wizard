@@ -34,7 +34,9 @@ const TransformedImage = ({
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold text-gray-800">Transformed</h3>
+        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-300">
+          Transformed
+        </h3>
 
         {hasDownload && (
           <button

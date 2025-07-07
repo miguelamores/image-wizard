@@ -63,7 +63,9 @@ const MediaUploader = ({
     >
       {({ open }) => (
         <div className="flex flex-col gap-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Original</h3>
+          <h3 className="text-xl font-bold text-gray-800 mb-2 dark:text-gray-200">
+            Original
+          </h3>
           {publicId ? (
             <>
               <div className="cursor-pointer overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] border-2 border-white/50">

@@ -210,7 +210,7 @@ const TransformationForm = ({
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         data-testid="transformation-form"
-        className="space-y-8"
+        className="gap-5 flex flex-col"
       >
         {creditBalance < Math.abs(creditFee) && <InsufficientCreditsModal />}
         <CustomField
@@ -218,7 +218,7 @@ const TransformationForm = ({
           name="title"
           aria-label="title"
           formLabel="Image Title"
-          className="w-full"
+          className="w-full flex flex-col gap-2"
           render={({ field }) => <Input {...field} className="input-field" />}
         />
         {type === "fill" && (
@@ -226,7 +226,7 @@ const TransformationForm = ({
             control={form.control}
             name="aspectRatio"
             formLabel="Aspect Ratio"
-            className="w-full"
+            className="w-full flex flex-col gap-2"
             render={({ field }) => (
               <Select
                 onValueChange={value =>
@@ -256,7 +256,7 @@ const TransformationForm = ({
               formLabel={
                 type === "remove" ? "Object to remove" : "Object to recolor"
               }
-              className="w-full"
+              className="w-full flex flex-col gap-2"
               render={({ field }) => (
                 <Input
                   value={field.value}
@@ -278,7 +278,7 @@ const TransformationForm = ({
                 control={form.control}
                 name="color"
                 formLabel="Replacement Color"
-                className="w-full"
+                className="w-full flex flex-col gap-2"
                 render={({ field }) => (
                   <Input
                     value={field.value}
@@ -327,7 +327,7 @@ const TransformationForm = ({
         <div className="flex flex-col gap-4">
           <Button
             type="button"
-            className="submit-button capitalize"
+            className="submit-button capitalize dark:shadow-none"
             disabled={isTransforming || newTransformation === null}
             onClick={onTransformHandler}
           >
@@ -337,7 +337,7 @@ const TransformationForm = ({
           <Button
             role="submit"
             type="submit"
-            className="submit-button capitalize"
+            className="submit-button capitalize dark:shadow-none"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Save Image"}
