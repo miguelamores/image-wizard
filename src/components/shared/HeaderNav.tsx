@@ -15,8 +15,8 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 flex justify-center z-50 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-slate-700 shadow-sm">
-      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex items-center justify-between h-16 w-full">
+      <div className="max-w-7xl sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between h-16 w-full px-4">
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
@@ -145,7 +145,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl">
+          <div className="md:hidden absolute left-0 right-0 h-screen border-t border-gray-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <SignedIn>
                 {/* Main Navigation */}

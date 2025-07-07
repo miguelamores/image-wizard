@@ -5,8 +5,8 @@ interface Props {
 
 const Header = ({ title, subtitle }: Props) => {
   return (
-    <div className="mb-8">
-      <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent lg:text-4xl">
+    <div className="mb-2 px-6 pt-2">
+      <h2 className="text-3xl text-center font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent lg:text-4xl">
         {title}
       </h2>
       {subtitle && (

@@ -234,7 +234,7 @@ const TransformationForm = ({
                 }
                 value={field.value}
               >
-                <SelectTrigger className="select-field">
+                <SelectTrigger className="select-field bg-white dark:bg-gray-800 dark:border-gray-700">
                   <SelectValue placeholder="Select size" />
                 </SelectTrigger>
                 <SelectContent>
